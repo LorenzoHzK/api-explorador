@@ -39,6 +39,6 @@ class ExplorerController extends Controller
 
         $explorer = Explorer::findOrFail($id);
         $explorer->update ($validated);
-        return with ( 'success' );
+        return with ('Success');
     }
 }
