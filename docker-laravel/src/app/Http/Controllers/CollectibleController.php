@@ -38,8 +38,8 @@ class CollectibleController extends Controller
         ->where('explorer_id', $data['explorer1_id'])->get();
 
         $collectible2 = Collectible::whereIn('id', $data['collectible2_id'])
-        ->where('explorer_id', $data['explorer2_id'])->get()
-;
+        ->where('explorer_id', $data['explorer2_id'])->get();
+
         if ($collectible1->isEmpty() || $collectible2->isEmpty()) {
             return response()->json('Error the itens don`t confer');
         }
@@ -69,5 +69,23 @@ class CollectibleController extends Controller
             }
 
             return response()->json('Trade sucessful');
+    }
+
+
+    public function report(){
+        $collectibles = Collectible::all();
+        $totalValue = 0;
+        $aboveValue = 0;
+        foreach($collectibles as $item){
+            $totalValue += $item->value;
+
+            if ($item->value > 100)
+            {
+                $aboveValue ++;
+            }
+        };
+        $totalValue = $totalValue / count($collectibles);
+
+        return response()->json(['valor medio: '=> $totalValue, $aboveValue=>'itens que estao acima de 100']);
     }
 }

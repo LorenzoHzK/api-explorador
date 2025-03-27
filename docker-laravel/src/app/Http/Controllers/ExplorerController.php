@@ -41,4 +41,8 @@ class ExplorerController extends Controller
         $explorer->update ($validated);
         return with ('Success');
     }
+
+
+    public function history(){
+    }
 }

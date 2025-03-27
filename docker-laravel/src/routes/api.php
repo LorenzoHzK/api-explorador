@@ -9,4 +9,9 @@ Route::resource('/exploradores', ExplorerController::class) ;
 
 Route::post('/inventario/troca', [CollectibleController::class, 'trade']);
 
+Route::get('/relatorios', [CollectibleController::class, 'report']);
+
+Route::get('/exploradores/{id}/historico', [ExplorerController::class, 'history']);
+
 Route::resource('/inventario', CollectibleController::class);
+
